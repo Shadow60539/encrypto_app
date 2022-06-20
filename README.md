@@ -7,7 +7,7 @@
 
 ![lib](images/poster.png)
 
-[![Playstore](images/google-play-badge.png)](https://play.google.com/store/apps/details?id=com.sanjeev.encrypto_app)
+[![Playstore](images/google-play-badge.png)](https://play.google.com/store/apps/details?id=com.sanjeev.flutter_encrypto)
 
 # 💎Encrypto: Easy File Encryption 
 
