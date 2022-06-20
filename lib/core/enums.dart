@@ -1,0 +1,1 @@
+enum CryptionMethod { encrypt, decrypt }
