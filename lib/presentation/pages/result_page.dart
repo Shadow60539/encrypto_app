@@ -7,12 +7,12 @@ import 'package:flutter_encrypto/application/crypto/crypto_bloc.dart';
 import 'package:flutter_encrypto/application/save/save_bloc.dart';
 import 'package:flutter_encrypto/core/enums.dart';
 import 'package:flutter_encrypto/core/navigation_service.dart';
+import 'package:flutter_encrypto/domain/failure/save_failure.dart';
 import 'package:flutter_encrypto/presentation/core/palette.dart';
 import 'package:flutter_encrypto/presentation/pages/home_page.dart';
 import 'package:flutter_encrypto/presentation/widgets/permission_dialog.dart';
 import 'package:lottie/lottie.dart';
 import 'package:open_file/open_file.dart';
-
 
 class ResultPage extends StatefulWidget {
   const ResultPage({Key? key}) : super(key: key);
@@ -72,7 +72,7 @@ class _ResultPageState extends State<ResultPage> with TickerProviderStateMixin {
                 state.savefailureOrSuccessOption.fold(
                   () => null,
                   (some) => some.fold(
-                    (l) => _showPermissionDialog(),
+                    _showPermissionDialog,
                     (r) {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -364,7 +364,9 @@ class _ResultPageState extends State<ResultPage> with TickerProviderStateMixin {
     // saveBloc.add(const SaveEvent.save());
   }
 
-  void _showPermissionDialog() {
+  void _showPermissionDialog(SaveFailure failure) {
+    if (failure == const SaveFailure.userCancelled()) return;
+
     showDialog(
       context: context,
       builder: (_) {
